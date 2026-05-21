@@ -1,907 +1,989 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lifeline Fence – Built to Last</title>
 
-        <meta name="description" content="">
-        <meta name="author" content="">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
-        <title>Lifeline Fence HTML5 Bootstrap v5 Template</title>
+    <style>
+        :root {
+            --olive:    #5A5A21;
+            --olive-lt: #7a7a30;
+            --olive-dk: #3a3a14;
+            --cream:    #f4f0e6;
+            --charcoal: #1a1a1a;
+            --mid:      #2c2c2c;
+            --accent:   #c8b560;
+            --white:    #ffffff;
+        }
 
-        <!-- CSS FILES -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        
-        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+        html { scroll-behavior: smooth; }
 
-        <link href="css/bootstrap-icons.css" rel="stylesheet">
+        body {
+            font-family: 'Lato', sans-serif;
+            background: var(--charcoal);
+            color: var(--cream);
+            overflow-x: hidden;
+        }
 
-        <link href="css/templatemo-leadership-event.css" rel="stylesheet">
-        
-<!--
+        h1, h2, h3, h4, h5 { font-family: 'Oswald', sans-serif; letter-spacing: .04em; }
 
-TemplateMo 575 Leadership Event
+        /* ─── NAVBAR ─────────────────────────────────── */
+        .navbar {
+            background: rgba(20,20,20,.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 2px solid var(--olive);
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .navbar-brand img { height: 52px; width: auto; }
+        .brand-text {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+        }
+        .navbar-toggler { border-color: var(--olive); }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%235A5A21' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        .nav-link {
+            color: var(--cream) !important;
+            font-family: 'Oswald', sans-serif;
+            font-size: .95rem;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            padding: 6px 14px !important;
+            transition: color .2s;
+        }
+        .nav-link:hover { color: var(--accent) !important; }
+        .nav-cta {
+            background: var(--olive);
+            color: var(--white) !important;
+            border-radius: 2px;
+            padding: 6px 18px !important;
+            transition: background .2s;
+        }
+        .nav-cta:hover { background: var(--olive-lt) !important; }
 
-https://templatemo.com/tm-575-leadership-event
+        /* ─── HERO ───────────────────────────────────── */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 560px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+        .hero video {
+            position: absolute;
+            inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+        #heroPoster {
+            position: absolute;
+            inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            display: none;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, rgba(20,20,8,.78) 40%, rgba(90,90,33,.25) 100%);
+            z-index: 2;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 3;
+        }
+        .hero-eyebrow {
+            font-family: 'Lato', sans-serif;
+            font-size: .8rem;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 14px;
+            opacity: 0;
+            animation: fadeUp .8s .3s forwards;
+        }
+        .hero h1 {
+            font-size: clamp(2.8rem, 7vw, 5.5rem);
+            font-weight: 700;
+            line-height: 1;
+            color: var(--white);
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeUp .8s .5s forwards;
+        }
+        .hero h1 span { color: var(--accent); }
+        .hero-sub {
+            font-size: 1.15rem;
+            font-weight: 300;
+            color: var(--cream);
+            max-width: 480px;
+            margin-top: 18px;
+            opacity: 0;
+            animation: fadeUp .8s .7s forwards;
+        }
+        .hero-btns {
+            margin-top: 32px;
+            opacity: 0;
+            animation: fadeUp .8s .9s forwards;
+        }
+        .btn-olive {
+            background: var(--olive);
+            color: var(--white);
+            border: none;
+            border-radius: 2px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            padding: 13px 32px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background .2s, transform .15s;
+        }
+        .btn-olive:hover { background: var(--olive-lt); color: var(--white); transform: translateY(-2px); }
+        .btn-outline-cream {
+            background: transparent;
+            color: var(--cream);
+            border: 2px solid var(--cream);
+            border-radius: 2px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            padding: 11px 32px;
+            text-decoration: none;
+            display: inline-block;
+            margin-left: 14px;
+            transition: background .2s, color .2s;
+        }
+        .btn-outline-cream:hover { background: var(--cream); color: var(--charcoal); }
+        .hero-scroll {
+            position: absolute;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            color: var(--accent);
+            font-size: 1.6rem;
+            animation: bounce 2s infinite;
+        }
 
--->
-    </head>
-    
-    <body>
+        /* ─── SECTION SHARED ─────────────────────────── */
+        section { padding: 90px 0; }
+        .section-label {
+            font-size: .75rem;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--white);
+            line-height: 1.05;
+        }
+        .section-title span { color: var(--accent); }
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: var(--olive);
+            margin: 18px 0 30px;
+        }
 
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
+        /* ─── STATS BAR ──────────────────────────────── */
+        .stats-bar {
+            background: var(--olive-dk);
+            border-top: 3px solid var(--olive);
+            border-bottom: 3px solid var(--olive);
+            padding: 36px 0;
+        }
+        .stat-item { text-align: center; }
+        .stat-num {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: .85rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--cream);
+            opacity: .7;
+            margin-top: 6px;
+        }
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        /* ─── SERVICES ───────────────────────────────── */
+        .services { background: var(--mid); }
+        .service-card {
+            background: var(--charcoal);
+            border: 1px solid rgba(90,90,33,.35);
+            border-top: 3px solid var(--olive);
+            padding: 36px 28px;
+            transition: transform .25s, border-color .25s, box-shadow .25s;
+            height: 100%;
+        }
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent);
+            box-shadow: 0 16px 40px rgba(0,0,0,.4);
+        }
+        .service-icon {
+            font-size: 2.4rem;
+            color: var(--accent);
+            margin-bottom: 18px;
+        }
+        .service-card h4 {
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+        .service-card p { color: rgba(244,240,230,.7); font-size: .95rem; line-height: 1.65; }
 
-                <a href="index.html" class="navbar-brand mx-auto mx-lg-0">
-                    <img src="images/Untitled_design-removebg-preview.png" height="50"
-                         width="50"/>
-                    <span class="brand-text">Lifeline <br> Fence</span>
+        /* ─── GALLERY ────────────────────────────────── */
+        .gallery { background: var(--charcoal); }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: 240px 240px;
+            gap: 8px;
+        }
+        .gallery-item {
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+        .gallery-item:first-child {
+            grid-row: 1 / 3;
+        }
+        .gallery-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform .5s ease, filter .4s;
+            filter: brightness(.85) saturate(.9);
+        }
+        .gallery-item:hover img { transform: scale(1.07); filter: brightness(1) saturate(1.1); }
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(90,90,33,.7) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity .35s;
+            display: flex;
+            align-items: flex-end;
+            padding: 18px;
+        }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+        .gallery-overlay span {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--white);
+        }
+
+        /* ─── OUR STORY ──────────────────────────────── */
+        .our-story {
+            background: var(--mid);
+            position: relative;
+            overflow: hidden;
+        }
+        .our-story::before {
+            content: 'LIFELINE';
+            position: absolute;
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(6rem, 18vw, 14rem);
+            font-weight: 700;
+            color: rgba(90,90,33,.07);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .our-story .container { position: relative; z-index: 1; }
+        .story-image-wrap {
+            position: relative;
+        }
+        .story-image-wrap img {
+            width: 100%;
+            height: 460px;
+            object-fit: cover;
+            border: 3px solid var(--olive);
+        }
+        .story-badge {
+            position: absolute;
+            bottom: -24px;
+            right: -24px;
+            width: 110px; height: 110px;
+            background: var(--olive);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid var(--charcoal);
+        }
+        .story-badge .num {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+        }
+        .story-badge .lbl {
+            font-size: .6rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--white);
+            text-align: center;
+        }
+        .story-text p {
+            color: rgba(244,240,230,.75);
+            line-height: 1.8;
+            font-size: 1rem;
+            margin-bottom: 18px;
+        }
+        .story-highlight {
+            border-left: 4px solid var(--olive);
+            padding-left: 20px;
+            margin: 30px 0;
+            font-size: 1.15rem;
+            font-style: italic;
+            color: var(--accent);
+            line-height: 1.6;
+        }
+
+        /* ─── WHY US ─────────────────────────────────── */
+        .why-us { background: var(--charcoal); }
+        .why-item {
+            display: flex;
+            gap: 18px;
+            margin-bottom: 32px;
+            opacity: 0;
+            transform: translateX(-24px);
+            transition: opacity .6s, transform .6s;
+        }
+        .why-item.visible { opacity: 1; transform: none; }
+        .why-num {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--olive);
+            line-height: 1;
+            min-width: 48px;
+        }
+        .why-item h5 {
+            font-size: 1.05rem;
+            text-transform: uppercase;
+            color: var(--white);
+            margin-bottom: 6px;
+        }
+        .why-item p { color: rgba(244,240,230,.65); font-size: .92rem; line-height: 1.6; }
+        .why-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border: 3px solid var(--olive);
+        }
+
+        /* ─── CTA BANNER ─────────────────────────────── */
+        .cta-banner {
+            background: var(--olive-dk);
+            border-top: 4px solid var(--olive);
+            border-bottom: 4px solid var(--olive);
+            padding: 70px 0;
+            text-align: center;
+        }
+        .cta-banner h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            text-transform: uppercase;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+        .cta-banner p {
+            color: var(--cream);
+            opacity: .8;
+            font-size: 1.05rem;
+            max-width: 520px;
+            margin: 0 auto 32px;
+        }
+
+        /* ─── CONTACT ────────────────────────────────── */
+        .contact-section { background: var(--mid); }
+        .contact-card {
+            background: var(--charcoal);
+            border: 1px solid rgba(90,90,33,.35);
+            padding: 40px 36px;
+        }
+        .form-control, .form-select {
+            background: var(--mid);
+            border: 1px solid rgba(90,90,33,.5);
+            color: var(--cream);
+            border-radius: 2px;
+            padding: 12px 16px;
+            font-size: .95rem;
+        }
+        .form-control:focus, .form-select:focus {
+            background: var(--mid);
+            border-color: var(--olive);
+            color: var(--cream);
+            box-shadow: 0 0 0 2px rgba(90,90,33,.25);
+        }
+        .form-control::placeholder { color: rgba(244,240,230,.4); }
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+        .contact-icon {
+            width: 44px; height: 44px;
+            background: var(--olive);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+        .contact-info-item h6 {
+            font-size: .75rem;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+        .contact-info-item p { color: var(--cream); margin: 0; font-size: .95rem; }
+
+        /* ─── FOOTER ─────────────────────────────────── */
+        footer {
+            background: var(--charcoal);
+            border-top: 3px solid var(--olive);
+            padding: 50px 0 24px;
+        }
+        .footer-brand img { height: 54px; width: auto; }
+        .footer-brand .brand-text { font-size: 1.1rem; }
+        footer p { color: rgba(244,240,230,.5); font-size: .88rem; }
+        .footer-links { list-style: none; padding: 0; }
+        .footer-links li { margin-bottom: 8px; }
+        .footer-links a {
+            color: rgba(244,240,230,.6);
+            text-decoration: none;
+            font-size: .9rem;
+            transition: color .2s;
+        }
+        .footer-links a:hover { color: var(--accent); }
+        .footer-heading {
+            font-family: 'Oswald', sans-serif;
+            font-size: .85rem;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px; height: 38px;
+            background: var(--olive-dk);
+            border: 1px solid var(--olive);
+            border-radius: 2px;
+            color: var(--cream);
+            font-size: 1rem;
+            margin-right: 8px;
+            text-decoration: none;
+            transition: background .2s, color .2s;
+        }
+        .social-links a:hover { background: var(--olive); color: var(--white); }
+        .footer-bottom {
+            border-top: 1px solid rgba(90,90,33,.3);
+            margin-top: 40px;
+            padding-top: 20px;
+            color: rgba(244,240,230,.35);
+            font-size: .82rem;
+        }
+
+        /* ─── ANIMATIONS ─────────────────────────────── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50%       { transform: translateX(-50%) translateY(10px); }
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity .7s ease, transform .7s ease;
+        }
+        .reveal.visible { opacity: 1; transform: none; }
+
+        /* ─── RESPONSIVE ─────────────────────────────── */
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: repeat(3, 200px);
+            }
+            .gallery-item:first-child { grid-row: auto; }
+            .story-badge { right: 0; bottom: -16px; width: 90px; height: 90px; }
+            .btn-outline-cream { margin-left: 0; margin-top: 12px; display: block; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══════════════════════════════════════════ -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a href="#" class="navbar-brand">
+            <img src="images/Untitled_design-removebg-preview.png" alt="Lifeline Fence Logo">
+            <span class="brand-text">Lifeline<br>Fence</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+                <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+                <li class="nav-item"><a class="nav-link" href="#story">Our Story</a></li>
+                <li class="nav-item"><a class="nav-link" href="#why">Why Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                <li class="nav-item ms-lg-3"><a class="nav-link nav-cta" href="#contact">Free Estimate</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- ══ HERO ════════════════════════════════════════════ -->
+<section class="hero" id="home">
+    <video id="heroVideo" autoplay muted playsinline>
+        <source src="videos/newfencing.mp4" type="video/mp4">
+    </video>
+    <img id="heroPoster" src="images/Untitled_design-removebg-preview.png" alt="Lifeline Fence">
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content">
+        <div class="row">
+            <div class="col-lg-7">
+                <p class="hero-eyebrow">Dallas–Fort Worth's Trusted Fence Experts</p>
+                <h1>Built to<br><span>Last.</span></h1>
+                <p class="hero-sub">Quality fencing solutions for residential and commercial properties — installed with military precision and backed by decades of craftsmanship.</p>
+                <div class="hero-btns">
+                    <a href="#contact" class="btn-olive">Get a Free Quote</a>
+                    <a href="#gallery" class="btn-outline-cream">View Our Work</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#stats" class="hero-scroll"><i class="bi bi-chevron-double-down"></i></a>
+</section>
+
+<!-- ══ STATS BAR ════════════════════════════════════════ -->
+<div class="stats-bar" id="stats">
+    <div class="container">
+        <div class="row g-4 text-center">
+            <div class="col-6 col-md-3 stat-item">
+                <div class="stat-num">500+</div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="col-6 col-md-3 stat-item">
+                <div class="stat-num">10+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="col-6 col-md-3 stat-item">
+                <div class="stat-num">100%</div>
+                <div class="stat-label">Veteran Owned</div>
+            </div>
+            <div class="col-6 col-md-3 stat-item">
+                <div class="stat-num">5★</div>
+                <div class="stat-label">Customer Rating</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ══ SERVICES ════════════════════════════════════════ -->
+<section class="services" id="services">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-6 reveal">
+                <p class="section-label">What We Do</p>
+                <h2 class="section-title">Our <span>Services</span></h2>
+                <div class="divider"></div>
+                <p style="color:rgba(244,240,230,.65); line-height:1.75;">From privacy panels to ornamental iron, we install every fence with the same discipline and attention to detail that defines everything we do at Lifeline Fence.</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4 reveal">
+                <div class="service-card">
+                    <div class="service-icon"><i class="bi bi-house-fill"></i></div>
+                    <h4>Residential Fencing</h4>
+                    <p>Privacy, picket, and decorative wood fences tailored to your home's style and your family's needs.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 reveal">
+                <div class="service-card">
+                    <div class="service-icon"><i class="bi bi-building"></i></div>
+                    <h4>Commercial Fencing</h4>
+                    <p>Security fencing, chain-link, and custom commercial solutions for businesses, warehouses, and properties of any scale.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 reveal">
+                <div class="service-card">
+                    <div class="service-icon"><i class="bi bi-grid-3x3"></i></div>
+                    <h4>Ornamental Iron</h4>
+                    <p>Elegant wrought iron fencing and gates that blend security with striking curb appeal.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 reveal">
+                <div class="service-card">
+                    <div class="service-icon"><i class="bi bi-link-45deg"></i></div>
+                    <h4>Chain Link</h4>
+                    <p>Durable, cost-effective chain link fencing for yards, sports courts, and perimeter security.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 reveal">
+                <div class="service-card">
+                    <div class="service-icon"><i class="bi bi-shield-check"></i></div>
+                    <h4>Cedar Privacy Fence</h4>
+                    <p>Premium cedar boards installed for maximum privacy and natural warmth that ages beautifully.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 reveal">
+                <div class="service-card">
+                    <div class="service-icon"><i class="bi bi-tools"></i></div>
+                    <h4>Repair &amp; Replacement</h4>
+                    <p>Storm damage, rot, or wear — we assess, repair, or fully replace sections fast and at fair prices.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══ GALLERY ════════════════════════════════════════ -->
+<section class="gallery" id="gallery">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-6 reveal">
+                <p class="section-label">Our Work</p>
+                <h2 class="section-title">Project <span>Gallery</span></h2>
+                <div class="divider"></div>
+            </div>
+        </div>
+        <div class="gallery-grid reveal">
+            <div class="gallery-item">
+                <img src="images/IMG_2052.jpg" alt="Fencing project 1">
+                <div class="gallery-overlay"><span>Cedar Privacy Fence</span></div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/IMG_2053.jpg" alt="Fencing project 2">
+                <div class="gallery-overlay"><span>Residential Cedar</span></div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/pexels-colin-fearing-286674282-13314964.jpg" alt="Fencing project 3">
+                <div class="gallery-overlay"><span>Commercial Fencing</span></div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/woodpanelfence.png" alt="Fencing project 4">
+                <div class="gallery-overlay"><span>Wood Panel Fence</span></div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/gateinstallation.png" alt="Fencing project 5">
+                <div class="gallery-overlay"><span>Gate Installation</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══ OUR STORY ══════════════════════════════════════ -->
+<section class="our-story" id="story">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-5 reveal">
+                <div class="story-image-wrap">
+                    <img src="images/IMG_2052.jpg" alt="Lifeline Fence Story">
+                    <div class="story-badge">
+                        <span class="num">10+</span>
+                        <span class="lbl">Years<br>Strong</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 story-text reveal">
+                <p class="section-label">Who We Are</p>
+                <h2 class="section-title">Our <span>Story</span></h2>
+                <div class="divider"></div>
+
+                <p>Three years ago, two veterans and longtime friends came together with a shared vision and strong work ethic to start a fence company. Built on discipline, loyalty, and pride in doing things the right way, the company quickly became something we were proud of.</p>
+
+                <div class="story-highlight">
+                    "We didn't just build fences — we built something we believed in, the same way we served: with everything we had."
+                </div>
+
+                <p>As life evolved, so did our paths. After a long wait to find the perfect home, my daughter transferred back to the Dallas area for college, and I made the decision to stay in DFW to be close to family and begin a new chapter. With that, we chose to respectfully dissolve the original company and go our separate ways.</p>
+
+                <p>From that transition, <strong style="color:var(--accent);">Lifeline Fence was born.</strong> A name that means something — a line you hold on to, the one that keeps everything else standing. That's what we build for you.</p>
+
+                <a href="#contact" class="btn-olive mt-3 d-inline-block">Start Your Project</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══ WHY US ═════════════════════════════════════════ -->
+<section class="why-us" id="why">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6">
+                <p class="section-label">Why Lifeline</p>
+                <h2 class="section-title">The Lifeline <span>Difference</span></h2>
+                <div class="divider"></div>
+
+                <div class="why-item">
+                    <div class="why-num">01</div>
+                    <div>
+                        <h5>Veteran-Owned &amp; Operated</h5>
+                        <p>We carry the same discipline and standards from service into every project — no shortcuts, no excuses, just results.</p>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-num">02</div>
+                    <div>
+                        <h5>Transparent Pricing</h5>
+                        <p>You get a clear, itemized estimate before any work begins. No surprise charges when the job is done.</p>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-num">03</div>
+                    <div>
+                        <h5>Local DFW Roots</h5>
+                        <p>We live here, we work here. Your neighborhood is our neighborhood, and our reputation depends on your satisfaction.</p>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-num">04</div>
+                    <div>
+                        <h5>Craftsmanship Guaranteed</h5>
+                        <p>Every post is set right, every board is straight. We stand behind our work with a satisfaction guarantee.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 why-image reveal">
+                <img src="images/pexels-colin-fearing-286674282-13314964.jpg" alt="Quality fencing workmanship">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══ CTA BANNER ═════════════════════════════════════ -->
+<div class="cta-banner">
+    <div class="container reveal">
+        <h2>Ready to <span style="color:var(--accent);">Get Started?</span></h2>
+        <p>Contact us today for a free, no-pressure estimate. We'll come out, measure your property, and give you a fair quote — usually within 24 hours.</p>
+        <a href="#contact" class="btn-olive" style="font-size:1.1rem; padding:16px 42px;">Request a Free Estimate</a>
+    </div>
+</div>
+
+<!-- ══ CONTACT ════════════════════════════════════════ -->
+<section class="contact-section" id="contact">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-6 reveal">
+                <p class="section-label">Get In Touch</p>
+                <h2 class="section-title">Contact <span>Us</span></h2>
+                <div class="divider"></div>
+            </div>
+        </div>
+        <div class="row g-5">
+            <div class="col-lg-5 reveal">
+                <div class="contact-info-item">
+                    <div class="contact-icon"><i class="bi bi-geo-alt-fill"></i></div>
+                    <div>
+                        <h6>Location</h6>
+                        <p>Dallas–Fort Worth, Texas</p>
+                    </div>
+                </div>
+                <div class="contact-info-item">
+                    <div class="contact-icon"><i class="bi bi-telephone-fill"></i></div>
+                    <div>
+                        <h6>Phone</h6>
+                        <p>(214) 555-0198</p>
+                    </div>
+                </div>
+                <div class="contact-info-item">
+                    <div class="contact-icon"><i class="bi bi-envelope-fill"></i></div>
+                    <div>
+                        <h6>Email</h6>
+                        <p>info@lifelinefence.com</p>
+                    </div>
+                </div>
+                <div class="contact-info-item">
+                    <div class="contact-icon"><i class="bi bi-clock-fill"></i></div>
+                    <div>
+                        <h6>Hours</h6>
+                        <p>Mon–Sat: 7AM – 6PM</p>
+                    </div>
+                </div>
+
+                <div class="social-links mt-4">
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-instagram"></i></a>
+                    <a href="#"><i class="bi bi-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="col-lg-7 reveal">
+                <div class="contact-card">
+                    <h4 style="color:var(--accent); text-transform:uppercase; margin-bottom:24px;">Request a Free Estimate</h4>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="Your Name">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="tel" class="form-control" placeholder="Phone Number">
+                        </div>
+                        <div class="col-12">
+                            <input type="email" class="form-control" placeholder="Email Address">
+                        </div>
+                        <div class="col-12">
+                            <select class="form-select form-control">
+                                <option value="" disabled selected>Type of Fencing</option>
+                                <option>Residential – Cedar Privacy</option>
+                                <option>Residential – Picket / Decorative</option>
+                                <option>Commercial</option>
+                                <option>Ornamental Iron</option>
+                                <option>Chain Link</option>
+                                <option>Repair / Replacement</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <textarea class="form-control" rows="4" placeholder="Tell us about your project…"></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn-olive w-100" style="padding:14px; font-size:1rem; border:none; cursor:pointer; width:100%; text-align:center;">
+                                Send My Request <i class="bi bi-arrow-right ms-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════════════════ -->
+<footer>
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <a href="#" class="navbar-brand footer-brand d-flex align-items-center gap-2 mb-3">
+                    <img src="images/Untitled_design-removebg-preview.png" alt="Lifeline Fence">
+                    <span class="brand-text">Lifeline<br>Fence</span>
                 </a>
-
-                <a class="nav-link custom-btn btn d-lg-none" href="#">Buy Tickets</a>
-
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_1">Home</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_2">About</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_3">Speakers</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_4">Schedules</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_5">Pricing</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_6">Venue</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_7">Contact</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link custom-btn btn d-none d-lg-block" href="#">Buy Tickets</a>
-                        </li>
-                    </ul>
-                <div>
-                        
+                <p>Veteran-owned fence company serving the Dallas–Fort Worth area. Built on integrity, discipline, and craftsmanship.</p>
             </div>
-        </nav>
 
-        <main>
-
-            <section class="hero" id="section_1">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-5 col-12 m-auto">
-                            <div class="hero-text">
-
-                                <h1  class="text-white mb-4"><u class="text-info">Lifeline Fence</u> Conference 2022</h1>
-
-                                <div class="d-flex justify-content-center align-items-center">
-                                    <span class="date-text">July 12 to 18, 2022</span>
-
-                                    <span class="location-text">Times Square, NY</span>
-                                </div>
-
-                                <a href="#section_2" class="custom-link bi-arrow-down arrow-icon"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="video-wrap">
-                    <video autoplay="" loop="" muted="" class="custom-video" poster="">
-                        <source src="videos/newfencing.mp4" type="video/mp4">
-
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-            </section>
-
-
-            <section class="highlight">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-4 col-md-6 col-12">
-                            <div class="highlight-thumb">
-                                <img src="images/IMG_2052.jpg" class="highlight-image img-fluid" alt="">
-
-                                <div class="highlight-info">
-                                    <h3 class="highlight-title">2019 Highlights</h3>
-
-                                    <a href="https://www.youtube.com/templatemo" class="bi-youtube highlight-icon"></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 col-12">
-                            <div class="highlight-thumb">
-                                <img src="images/IMG_2053.jpg" class="highlight-image img-fluid" alt="">
-
-                                <div class="highlight-info">
-                                    <h3 class="highlight-title">2020 Highlights</h3>
-
-                                    <a href="https://www.youtube.com/templatemo" class="bi-youtube highlight-icon"></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 col-12">
-                            <div class="highlight-thumb">
-                                <img src="images/pexels-colin-fearing-286674282-13314964.jpg" class="highlight-image img-fluid" alt="">
-
-                                <div class="highlight-info">
-                                    <h3 class="highlight-title">2021 Highlights</h3>
-
-                                    <a href="https://www.youtube.com/templatemo" class="bi-youtube highlight-icon"></a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-
-            <section class="about section-padding" id="section_2">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-10 col-12">
-                            <h2 class="mb-4">Our <u class="text-info">Story</u></h2>
-                        </div>
-
-                        <div class="col-lg-6 col-12">
-                            <h3 class="mb-3">The importance of Leadership Conference in 2022</h3>
-
-                            <p>Lifeline fencing is one-page Bootstrap v5.1.3 CSS layout for your website. Thank you for choosing TemplateMo website where you can instantly download free CSS templates at no cost.</p>
-
-                            <a class="custom-btn custom-border-btn btn custom-link mt-3 me-3" href="#section_3">Meet Speakers</a>
-
-                            <a class="custom-btn btn custom-link mt-3" href="#section_4">Check out Schedule</a>
-                        </div>
-
-                        <div class="col-lg-6 col-12 mt-5 mt-lg-0">
-                            <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut dolore</h4>
-
-                            <div class="avatar-group border-top py-5 mt-5">
-                                <img src="images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg" class="img-fluid avatar-image" alt="">
-
-                                <img src="images/avatar/happy-asian-man-standing-with-arms-crossed-grey-wall.jpg" class="img-fluid avatar-image avatar-image-left" alt="">
-
-                                <img src="images/avatar/senior-man-white-sweater-eyeglasses.jpg" class="img-fluid avatar-image avatar-image-left" alt="">
-
-                                <img src="images/avatar/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg" class="img-fluid avatar-image avatar-image-left" alt="">
-
-                                <p class="d-inline">120+ People are attending with us</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-
-            <section class="speakers section-padding" id="section_3">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-6 col-12 d-flex flex-column justify-content-center align-items-center">
-                            <div class="speakers-text-info">
-                                <h2 class="mb-4">Our <u class="text-info">Speakers</u></h2>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut dolore</p>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-12">
-                            <div class="speakers-thumb">
-                                <img src="images/avatar/happy-asian-man-standing-with-arms-crossed-grey-wall.jpg" class="img-fluid speakers-image" alt="">
-
-                                <small class="speakers-featured-text">Featured</small>
-
-                                <div class="speakers-info">
-
-                                    <h5 class="speakers-title mb-0">Logan Wilson</h5>
-
-                                    <p class="speakers-text mb-0">CEO / Founder</p>
-
-                                    <ul class="social-icon">
-                                        <li><a href="#" class="social-icon-link bi-facebook"></a></li>
-
-                                        <li><a href="#" class="social-icon-link bi-instagram"></a></li>
-
-                                        <li><a href="#" class="social-icon-link bi-google"></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12 col-12">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-6 col-12">
-                                    <div class="speakers-thumb speakers-thumb-small">
-                                        <img src="images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg" class="img-fluid speakers-image" alt="">
-
-                                        <div class="speakers-info">
-                                            <h5 class="speakers-title mb-0">Natalie</h5>
-
-                                            <p class="speakers-text mb-0">Event Planner</p>
-
-                                            <ul class="social-icon">
-                                                <li><a href="#" class="social-icon-link bi-facebook"></a></li>
-
-                                                <li><a href="#" class="social-icon-link bi-instagram"></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-3 col-md-6 col-12">
-                                    <div class="speakers-thumb speakers-thumb-small">
-                                        <img src="images/avatar/senior-man-white-sweater-eyeglasses.jpg" class="img-fluid speakers-image" alt="">
-
-                                        <div class="speakers-info">
-                                            <h5 class="speakers-title mb-0">Thomas</h5>
-
-                                            <p class="speakers-text mb-0">Startup Coach</p>
-
-                                            <ul class="social-icon">
-                                                <li><a href="#" class="social-icon-link bi-instagram"></a></li>
-
-                                                <li><a href="#" class="social-icon-link bi-whatsapp"></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-3 col-md-6 col-12">
-                                    <div class="speakers-thumb speakers-thumb-small">
-                                        <img src="images/avatar/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg" class="img-fluid speakers-image" alt="">
-
-                                        <div class="speakers-info">
-                                            <h5 class="speakers-title mb-0">Isabella</h5>
-
-                                            <p class="speakers-text mb-0">Event Manager</p>
-
-                                            <ul class="social-icon">
-                                                <li><a href="#" class="social-icon-link bi-facebook"></a></li>
-
-                                                <li><a href="#" class="social-icon-link bi-instagram"></a></li>
-
-                                                <li><a href="#" class="social-icon-link bi-whatsapp"></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-3 col-md-6 col-12">
-                                    <div class="speakers-thumb speakers-thumb-small">
-                                        <img src="images/avatar/indoor-shot-beautiful-happy-african-american-woman-smiling-cheerfully-keeping-her-arms-folded-relaxing-indoors-after-morning-lectures-university.jpg" class="img-fluid speakers-image" alt="">
-
-                                        <div class="speakers-info">
-                                            <h5 class="speakers-title mb-0">Samantha</h5>
-
-                                            <p class="speakers-text mb-0">Top Level Speaker</p>
-
-                                            <ul class="social-icon">
-                                                <li><a href="#" class="social-icon-link bi-instagram"></a></li>
-
-                                                <li><a href="#" class="social-icon-link bi-whatsapp"></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-
-            <section class="schedule section-padding" id="section_4">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-12 col-12">
-                            <h2 class="mb-5 text-center">Next <u class="text-info">Schedules</u></h2>
-
-                            <nav>
-                                <div class="nav nav-tabs align-items-baseline" id="nav-tab" role="tablist">
-                                    <button class="nav-link active" id="nav-DayOne-tab" data-bs-toggle="tab" data-bs-target="#nav-DayOne" type="button" role="tab" aria-controls="nav-DayOne" aria-selected="true">
-                                        <h3>
-                                            <span>Day One</span>
-                                            <small>July 12, 2022</small>
-                                        </h3>
-                                    </button>
-
-                                    <button class="nav-link" id="nav-DayTwo-tab" data-bs-toggle="tab" data-bs-target="#nav-DayTwo" type="button" role="tab" aria-controls="nav-DayTwo" aria-selected="false">
-                                        <h3>
-                                            <span>Day Two</span>
-                                            <small>July 14, 2022</small>
-                                        </h3>
-                                    </button>
-
-                                    <button class="nav-link" id="nav-DayThree-tab" data-bs-toggle="tab" data-bs-target="#nav-DayThree" type="button" role="tab" aria-controls="nav-DayThree" aria-selected="false">
-                                        <h3>
-                                            <span>Day Three</span>
-                                            <small>July 16, 2022</small>
-                                        </h3>
-                                    </button>
-
-                                    <button class="nav-link" id="nav-DayFour-tab" data-bs-toggle="tab" data-bs-target="#nav-DayFour" type="button" role="tab" aria-controls="nav-DayFour" aria-selected="false">
-                                        <h3>
-                                            <span>Day Four</span>
-                                            <small>July 18, 2022</small>
-                                        </h3>
-                                    </button>
-                                </div>
-                            </nav>
-
-                            <div class="tab-content mt-5" id="nav-tabContent">
-                                <div class="tab-pane fade show active" id="nav-DayOne" role="tabpanel" aria-labelledby="nav-DayOne-tab">
-                                    <div class="row border-bottom pb-5 mb-5">
-                                        <div class="col-lg-4 col-12">
-                                            <img src="images/schedule/fabian-friedrich-JDUVM9_VaZE-unsplash.jpg" class="schedule-image img-fluid" alt="">
-                                        </div>
-
-                                        <div class="col-lg-8 col-12 mt-3 mt-lg-0">
-                                            
-                                            <h4 class="mb-2">Startup Development Ideas</h4>
-
-                                            <p>You are free to download any HTML CSS template from TemplateMo website. You can use any template for business purposes. You are not allowed to redistribute the downloadable ZIP file on any other template website. Thank you.</p>
-
-                                            <div class="d-flex align-items-center mt-4">
-                                                <div class="avatar-group d-flex">
-                                                    <img src="images/avatar/happy-asian-man-standing-with-arms-crossed-grey-wall.jpg" class="img-fluid avatar-image" alt="">
-
-                                                    <div class="ms-3">
-                                                        Logan Wilson
-                                                        <p class="speakers-text mb-0">CEO / Founder</p>
-                                                    </div>
-                                                </div>
-
-                                                <span class="mx-3 mx-lg-5">
-                                                    <i class="bi-clock me-2"></i>
-                                                    9:00 - 9:45 AM
-                                                </span>
-
-                                                <span class="mx-1 mx-lg-5">
-                                                    <i class="bi-layout-sidebar me-2"></i>
-                                                    Conference Hall 3
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row border-bottom pb-5 mb-5">
-                                        <div class="col-lg-4 col-12">
-                                            <img src="images/schedule/clayton-cardinalli-JMoFpdqL3XM-unsplash.jpg" class="schedule-image img-fluid" alt="">
-                                        </div>
-
-                                        <div class="col-lg-8 col-12 mt-3 mt-lg-0">
-                                            <h4 class="mb-2">Introduction to Online Businesses</h4>
-
-                                            <p>Quisque mollis, ante non semper ultricies, nulla sapien sollicitudin augue, id scelerisque nunc turpis nec urna. Class aptent taciti sociosqu ad litora.</p>
-
-                                            <div class="d-flex align-items-center mt-4">
-                                                <div class="avatar-group d-flex">
-                                                    <img src="images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg" class="img-fluid avatar-image" alt="">
-
-                                                    <div class="ms-3">
-                                                    Natalie
-                                                    <p class="speakers-text mb-0">Event Planner</p>
-                                                </div>
-                                                </div>
-
-                                                <span class="mx-3 mx-lg-5">
-                                                    <i class="bi-clock me-2"></i>
-                                                    10:00 - 10:45 AM
-                                                </span>
-
-                                                <span class="mx-1 mx-lg-5">
-                                                    <i class="bi-layout-sidebar me-2"></i>
-                                                    100-D Room
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-4 col-12">
-                                            <img src="images/schedule/business-woman-making-presentation-office.jpg" class="schedule-image img-fluid" alt="">
-                                        </div>
-
-                                        <div class="col-lg-8 col-12 mt-3 mt-lg-0">
-                                            <h4 class="mb-2">Bootstrapping Startup</h4>
-
-                                            <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Ut consequat purus posuere tortor efficitur, sit amet dignissim libero aliquam.</p>
-
-                                            <div class="d-flex align-items-center mt-4">
-                                                <div class="avatar-group d-flex">
-                                                    <img src="images/avatar/senior-man-white-sweater-eyeglasses.jpg" class="img-fluid avatar-image" alt="">
-
-                                                    <div class="ms-3">
-                                                    Thomas
-                                                    <p class="speakers-text mb-0">Startup Coach</p>
-                                                </div>
-                                                </div>
-
-                                                <span class="mx-3 mx-lg-5">
-                                                    <i class="bi-clock me-2"></i>
-                                                    11:00 - 11:45 AM
-                                                </span>
-
-                                                <span class="mx-1 mx-lg-5">
-                                                    <i class="bi-layout-sidebar me-2"></i>
-                                                    100-B Room
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="tab-pane fade" id="nav-DayTwo" role="tabpanel" aria-labelledby="nav-DayTwo-tab">
-                                    <div class="row border-bottom pb-5 mb-5">
-                                        <div class="col-lg-4 col-12">
-                                            <img src="images/schedule/people-smiling-while-conference-room.jpg" class="schedule-image img-fluid" alt="">
-                                        </div>
-
-                                        <div class="col-lg-8 col-12 mt-3 mt-lg-0">
-                                            
-                                            <h4 class="mb-2">Building a famous company</h4>
-
-                                            <p>Quisque mollis, ante non semper ultricies, nulla sapien sollicitudin augue, id scelerisque nunc turpis nec urna. Class aptent taciti sociosqu ad litora torquent per conubia.</p>
-
-                                            <div class="d-flex align-items-center mt-4">
-                                                <div class="avatar-group d-flex">
-                                                    <img src="images/avatar/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg" class="img-fluid avatar-image" alt="">
-
-                                                    <div class="ms-3">
-                                                        Isabella
-                                                        <p class="speakers-text mb-0">Event Manager</p>
-                                                    </div>
-                                                </div>
-
-                                                <span class="mx-3 mx-lg-5">
-                                                    <i class="bi-clock me-2"></i>
-                                                    9:00 - 9:45 AM
-                                                </span>
-
-                                                <span class="mx-1 mx-lg-5">
-                                                    <i class="bi-layout-sidebar me-2"></i>
-                                                    Conference Hall 2
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-4 col-12">
-                                            <img src="images/schedule/jason-goodman-bzqU01v-G54-unsplash.jpg" class="schedule-image img-fluid" alt="">
-                                        </div>
-
-                                        <div class="col-lg-8 col-12 mt-3 mt-lg-0">
-                                            <h4 class="mb-2">Dev Ops life in corporate</h4>
-
-                                            <p>Quisque mollis, ante non semper ultricies, nulla sapien sollicitudin augue, id scelerisque nunc turpis nec urna. Class aptent taciti sociosqu ad litora torquent per conubia nostra.</p>
-
-                                            <div class="d-flex align-items-center mt-4">
-                                                <div class="avatar-group d-flex">
-                                                    <img src="images/avatar/indoor-shot-beautiful-happy-african-american-woman-smiling-cheerfully-keeping-her-arms-folded-relaxing-indoors-after-morning-lectures-university.jpg" class="img-fluid avatar-image" alt="">
-
-                                                    <div class="ms-3">
-                                                    Samantha
-                                                    <p class="speakers-text mb-0">Top Level Speaker</p>
-                                                </div>
-                                                </div>
-
-                                                <span class="mx-3 mx-lg-5">
-                                                    <i class="bi-clock me-2"></i>
-                                                    10:00 - 10:45 AM
-                                                </span>
-
-                                                <span class="mx-1 mx-lg-5">
-                                                    <i class="bi-layout-sidebar me-2"></i>
-                                                    100-A Room
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="tab-pane fade" id="nav-DayThree" role="tabpanel" aria-labelledby="nav-DayThree-tab">
-                                    <div class="row border-bottom pb-5 mb-5">
-                                        <div class="col-lg-4 col-12">
-                                            <img src="images/schedule/people-smiling-while-conference-room.jpg" class="schedule-image img-fluid" alt="">
-                                        </div>
-
-                                        <div class="col-lg-8 col-12 mt-3 mt-lg-0">
-                                            
-                                            <h4 class="mb-2">Maintaining a successful business</h4>
-
-                                            <p>Quisque mollis, ante non semper ultricies, nulla sapien sollicitudin augue, id scelerisque nunc turpis nec urna. Class aptent taciti sociosqu.</p>
-
-                                            <div class="d-flex align-items-center mt-4">
-                                                <div class="avatar-group d-flex">
-                                                    <img src="images/avatar/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg" class="img-fluid avatar-image" alt="">
-
-                                                    <div class="ms-3">
-                                                        Isabella
-                                                        <p class="speakers-text mb-0">Event Manager</p>
-                                                    </div>
-                                                </div>
-
-                                                <span class="mx-3 mx-lg-5">
-                                                    <i class="bi-clock me-2"></i>
-                                                    9:00 - 9:45 AM
-                                                </span>
-
-                                                <span class="mx-1 mx-lg-5">
-                                                    <i class="bi-layout-sidebar me-2"></i>
-                                                    Conference Hall 1
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-4 col-12">
-                                            <img src="images/schedule/jason-goodman-bzqU01v-G54-unsplash.jpg" class="schedule-image img-fluid" alt="">
-                                        </div>
-
-                                        <div class="col-lg-8 col-12 mt-3 mt-lg-0">
-                                            <h4 class="mb-2">Working Life in Corporate Environment</h4>
-
-                                            <p>Quisque mollis, ante non semper ultricies, nulla sapien sollicitudin augue, id scelerisque nunc turpis nec urna.</p>
-
-                                            <div class="d-flex align-items-center mt-4">
-                                                <div class="avatar-group d-flex">
-                                                    <img src="images/avatar/indoor-shot-beautiful-happy-african-american-woman-smiling-cheerfully-keeping-her-arms-folded-relaxing-indoors-after-morning-lectures-university.jpg" class="img-fluid avatar-image" alt="">
-
-                                                    <div class="ms-3">
-                                                    Samantha
-                                                    <p class="speakers-text mb-0">Top Level Speaker</p>
-                                                </div>
-                                                </div>
-
-                                                <span class="mx-3 mx-lg-5">
-                                                    <i class="bi-clock me-2"></i>
-                                                    10:00 - 10:45 AM
-                                                </span>
-
-                                                <span class="mx-1 mx-lg-5">
-                                                    <i class="bi-layout-sidebar me-2"></i>
-                                                    100-C Room
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="tab-pane fade" id="nav-DayFour" role="tabpanel" aria-labelledby="nav-DayFour-tab">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-12">
-                                            <img src="images/schedule/jeshoots-com-TWRCH-GaKr4-unsplash.jpg" class="schedule-image img-fluid" alt="">
-                                        </div>
-
-                                        <div class="col-lg-8 col-12 mt-3 mt-lg-0">
-                                            <h4 class="mb-2">After Party at the fullest</h4>
-
-                                            <p>There is a plenty of great HTML CSS templates available at TemplateMo.com website for your businesses. You can download, edit and use any template for any purpose. Please let us know <a rel="nofollow" href="https://templatemo.com/contact" target="_parent"><u>your feedback via Email</u></a>. Thank you.</p>
-
-                                            <div class="d-flex align-items-center mt-4">
-
-                                                <span>
-                                                    <i class="bi-clock me-2"></i>
-                                                    8:00 - 9:00 AM
-                                                </span>
-
-                                                <span class="mx-1 mx-lg-5">
-                                                    <i class="bi-layout-sidebar me-2"></i>
-                                                    Conference Hall 2
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-            <section class="call-to-action section-padding">
-                <div class="container">
-                    <div class="row align-items-center">
-
-                        <div class="col-lg-7 col-12">
-                            <h2 class="text-white mb-4">Become an <u class="text-info">event speaker?</u></h2>
-
-                            <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut dolore</p>
-                        </div>
-
-                        <div class="col-lg-3 col-12 ms-lg-auto mt-4 mt-lg-0">
-                            <a href="#section_5" class="custom-btn btn">Register Today</a>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-            <section class="pricing section-padding" id="section_5">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-10 col-12 text-center mx-auto mb-5">
-                            <h2>Get Your <u class="text-info">Tickets</u></h2>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 col-12 mb-5 mb-lg-0">
-                            <div class="pricing-thumb bg-white shadow-lg">                                
-                                <div class="pricing-title-wrap d-flex align-items-center">
-
-                                    <h4 class="pricing-title text-white mb-0">Early Bird</h4>
-
-                                    <h5 class="pricing-small-title text-white mb-0 ms-auto">$640</h5>
-                                </div>
-
-                                <div class="pricing-body">
-                                    <p>
-                                        <i class="bi-cup me-2"></i> All-Day Coffee + Snacks
-                                    </p>
-
-                                    <p>
-                                        <i class="bi-controller me-2"></i> After Party
-                                    </p>
-
-                                    <p>
-                                        <i class="bi-chat-square me-2"></i> 24/7 Support
-                                    </p>
-
-                                    <div class="border-bottom pb-3 mb-4"></div>
-
-                                    <p>Quick group meetings for multiple teams</p>
-
-                                    <a class="custom-btn btn mt-3" href="#">Buy Tickets</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 col-12 mb-5 mb-lg-0">
-                            <div class="pricing-thumb bg-white shadow-lg">                                
-                                <div class="pricing-title-wrap d-flex align-items-center">
-
-                                    <h4 class="pricing-title text-white mb-0">Gold</h4>
-
-                                    <h5 class="pricing-small-title text-white mb-0 ms-auto">$840</h5>
-                                </div>
-
-                                <div class="pricing-body">
-                                    <p>
-                                        <i class="bi-cup me-2"></i> All-Day Coffee + Snacks
-                                    </p>
-
-                                    <p>
-                                        <i class="bi-boombox me-2"></i> Group Meetings + After Party
-                                    </p>
-
-                                    <p>
-                                        <i class="bi-chat-square me-2"></i> 24/7 Support + Instant Chats
-                                    </p>
-
-                                    <div class="border-bottom pb-3 mb-4"></div>
-
-                                    <p>Quick group meetings for multiple teams</p>
-
-                                    <a class="custom-btn btn mt-3" href="#">Buy Tickets</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 col-12">
-                            <div class="pricing-thumb bg-white shadow-lg">                                
-                                <div class="pricing-title-wrap d-flex align-items-center">
-
-                                    <h4 class="pricing-title text-white mb-0">Platinum</h4>
-
-                                    <h5 class="pricing-small-title text-white mb-0 ms-auto">$1,240</h5>
-                                </div>
-
-                                <div class="pricing-body">
-                                    <p>
-                                        <i class="bi-cash me-2"></i> Cashback $200
-                                    </p>
-
-                                    <p>
-                                        <i class="bi-boombox me-2"></i> Private Meetings + After Party
-                                    </p>
-
-                                    <p>
-                                        <i class="bi-chat-square me-2"></i> 24/7 Support + Instant Chats
-                                    </p>
-
-                                    <div class="border-bottom pb-3 mb-4"></div>
-
-                                    <p>group talks and private chats for multiple teams</p>
-
-                                    <a class="custom-btn btn mt-3" href="#">Buy Tickets</a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-            <section class="venue section-padding" id="section_6">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-12 col-12">
-                            <h2 class="mb-5">Here you go <u class="text-info">Venue</u></h2>
-                        </div>
-
-                        <div class="col-lg-6 col-12">
-                            <iframe class="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1511.091461689997!2d-73.9866630916883!3d40.758001294831736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855a96da09d%3A0x860bf5a5e1a00a68!2sTimes%20Square%2C%20New%20York%2C%20NY%2010036%2C%20USA!5e0!3m2!1sen!2ssg!4v1643035529098!5m2!1sen!2ssg" width="100%" height="371.59" allowfullscreen="" loading="lazy"></iframe>
-                        </div>
-
-                        <div class="col-lg-6 col-12 mt-5 mt-lg-0">
-                            <div class="venue-thumb bg-white shadow-lg">
-                                
-                                <div class="venue-info-title">
-                                    <h2 class="text-white mb-0">Times Square</h2>
-                                </div>
-
-                                <div class="venue-info-body">
-                                    <h4 class="d-flex">
-                                        <i class="bi-geo-alt me-2"></i> 
-                                        <span>102 South. 7th Street, New York, NY 10036, USA</span>
-                                    </h4>
-
-                                    <h5 class="mt-4 mb-3">
-                                        <a href="mailto:hello@yourgmail.com">
-                                            <i class="bi-envelope me-2"></i>
-                                            hi@company.com
-                                        </a>
-                                    </h5>
-
-                                    <h5 class="mb-0">
-                                        <a href="tel: 305-240-9671">
-                                            <i class="bi-telephone me-2"></i>
-                                            010-020-0340
-                                        </a>
-                                    </h5>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-            <section class="contact section-padding" id="section_7">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-8 col-12 mx-auto">
-                            <form class="custom-form contact-form bg-white shadow-lg" action="#" method="post" role="form">
-                                <h2>Please Say Hi</h2>
-
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-12">                                    
-                                        <input type="text" name="name" id="name" class="form-control" placeholder="Name" required="">
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-4 col-12">         
-                                        <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email" required="">
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-4 col-12">                                    
-                                        <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject">
-                                    </div>
-
-                                    <div class="col-12">
-                                        <textarea class="form-control" rows="5" id="message" name="message" placeholder="Message"></textarea>
-
-                                        <button type="submit" class="form-control">Submit</button>
-                                    </div>
-
-                                </div>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-        </main>
-
-        <footer class="site-footer">
-            <div class="container">
-                <div class="row align-items-center">
-
-                    <div class="col-lg-12 col-12 border-bottom pb-5 mb-5">
-                        <div class="d-flex">
-                            <a href="index.html" class="navbar-brand">
-                                <img src="images/lifelinelogo.png" height="500"
-                                     width="500"/>
-
-                                <span class="brand-text">LifeLine <br> Fence</span>
-                            </a>
-
-                            <ul class="social-icon ms-auto">
-                                <li><a href="#" class="social-icon-link bi-facebook"></a></li>
-
-                                <li><a href="#" class="social-icon-link bi-instagram"></a></li>
-
-                                <li><a href="#" class="social-icon-link bi-whatsapp"></a></li>
-
-                                <li><a href="#" class="social-icon-link bi-youtube"></a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-7 col-12">
-                        <ul class="footer-menu d-flex flex-wrap">
-                            <li class="footer-menu-item"><a href="#" class="footer-menu-link">Our Story</a></li>
-
-                            <li class="footer-menu-item"><a href="#" class="footer-menu-link">Code of Conduct</a></li>
-
-                            <li class="footer-menu-item"><a href="#" class="footer-menu-link">Privacy and Terms</a></li>
-
-                            <li class="footer-menu-item"><a href="#" class="footer-menu-link">Contact</a></li>
-                        </ul>
-                    </div>
-
-                        
-                    <div class="col-lg-5 col-12 ms-lg-auto">
-                        <div class="copyright-text-wrap d-flex align-items-center">
-                            <p class="copyright-text ms-lg-auto me-4 mb-0">Copyright © 2022 Leadership Event Co., Ltd. 
-                            
-                            <br>All Rights Reserved. 
-          
-          					<br><br>Design: <a title="CSS Templates" rel="sponsored" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
-
-                            <a href="#section_1" class="bi-arrow-up arrow-icon custom-link"></a>
-                        </div>
-                    </div>
-
-                </div>
+            <div class="col-6 col-lg-2 offset-lg-1">
+                <p class="footer-heading">Services</p>
+                <ul class="footer-links">
+                    <li><a href="#services">Residential</a></li>
+                    <li><a href="#services">Commercial</a></li>
+                    <li><a href="#services">Ornamental Iron</a></li>
+                    <li><a href="#services">Chain Link</a></li>
+                    <li><a href="#services">Repairs</a></li>
+                </ul>
             </div>
-        </footer>
 
-        <!-- JAVASCRIPT FILES -->
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery.sticky.js"></script>
-        <script src="js/click-scroll.js"></script>
-        <script src="js/custom.js"></script>
+            <div class="col-6 col-lg-2">
+                <p class="footer-heading">Company</p>
+                <ul class="footer-links">
+                    <li><a href="#story">Our Story</a></li>
+                    <li><a href="#why">Why Us</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
 
-    </body>
+            <div class="col-lg-3">
+                <p class="footer-heading">DFW Service Area</p>
+                <p style="color:rgba(244,240,230,.55); font-size:.88rem; line-height:1.7;">
+                    Plano · Allen · Frisco · McKinney · Richardson · Garland · Dallas · Irving · Arlington
+                </p>
+            </div>
+        </div>
+
+        <div class="footer-bottom text-center">
+            © 2024 Lifeline Fence LLC · All Rights Reserved · Dallas–Fort Worth, TX
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Hero video: play at 5.5x, then show poster image
+    const heroVideo = document.getElementById('heroVideo');
+    const heroPoster = document.getElementById('heroPoster');
+
+    setTimeout(() => {
+        heroVideo.playbackRate = 5.5;
+        heroVideo.play();
+        heroVideo.addEventListener('ended', () => {
+            heroVideo.style.display = 'none';
+            heroPoster.style.display = 'block';
+        });
+    }, 2000);
+
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal, .why-item');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((e, i) => {
+            if (e.isIntersecting) {
+                setTimeout(() => e.target.classList.add('visible'), i * 80);
+                observer.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+</script>
+</body>
 </html>
